@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainPersonController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class MainPersonController : MonoBehaviour
     public FixedJoystick LeftJoystick;
     public FixedButton Button;
     public FixedTouchField TouchField;
+
+    public int jump = 2; //Высота прыжка
 
     protected ActionsOfMainCharacter actionsOfMainCharacter;
     protected Rigidbody Rigidbody;
@@ -30,7 +33,7 @@ public class MainPersonController : MonoBehaviour
     {
 
         var input = new Vector3(LeftJoystick.Direction.x, 0, LeftJoystick.Direction.y);
-        var vel = Quaternion.AngleAxis(CameraAngleY + 180, Vector3.up) * input * 3f;
+        var vel = Quaternion.AngleAxis(CameraAngleY + 180, Vector3.up) * input * 5f;
 
         Rigidbody.velocity = new Vector3(vel.x, Rigidbody.velocity.y, vel.z);
         
@@ -46,9 +49,29 @@ public class MainPersonController : MonoBehaviour
         Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, 2, 2);
         Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + Vector3.up - (Camera.main.transform.position), Vector3.up);
 
-        if (Rigidbody.velocity.magnitude > 0.5f)
+
+        if (Button.Pressed)
+        {
+            actionsOfMainCharacter.Jump();
+            transform.position = transform.position + new Vector3(0, jump * 0.02f, 0);
+        }
+
+
+        if (Rigidbody.velocity.magnitude > 1f)
+        {
+            actionsOfMainCharacter.Run();
+        }
+
+        else if (Rigidbody.velocity.magnitude > 0.5f)
+        {
             actionsOfMainCharacter.Walk();
+        }
+
         else
+        {
             actionsOfMainCharacter.Stay();
+        }
     }
+
+    
 }

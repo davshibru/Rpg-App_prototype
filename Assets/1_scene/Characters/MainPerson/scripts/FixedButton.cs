@@ -17,7 +17,7 @@ public class FixedButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
     }

@@ -15,16 +15,25 @@ public class ActionsOfMainCharacter : MonoBehaviour
 
     public void Walk()
     {
-        animator.SetBool("Walk", true);
+        animator.SetFloat("Speed", 0.5f);
     }
 
-    
+    public void Run()
+    {
+        animator.SetFloat("Speed", 1f);
+    }
 
     public void Stay()
     {
         animator.SetBool("Walk", false);
+        animator.SetFloat("Speed", 0f);
     }
 
-    
+    public void Jump()
+    {
+        animator.SetTrigger("Jump");
+    }
+
+
 
 }
