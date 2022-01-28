@@ -15,6 +15,8 @@ public class ChangingWeapon : MonoBehaviour
     public FixedButton NormalModeButton;
     public FixedButton ChangeWeaponButton;
 
+    protected ActionsOfMainCharacter actionsOfMainCharacter;
+
     public GameObject curentWeapon;
     public Transform leftHand;
 
@@ -24,6 +26,10 @@ public class ChangingWeapon : MonoBehaviour
     public GameObject normalMode;
     public GameObject fightMode;
 
+    void Start()
+    {
+        actionsOfMainCharacter = GetComponent<ActionsOfMainCharacter>();
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -35,6 +41,7 @@ public class ChangingWeapon : MonoBehaviour
     {
         normalMode.SetActive(false);
         fightMode.SetActive(true);
+        actionsOfMainCharacter.TakeOnWeapon();
         changingWeaponMethod();
     }
 
@@ -43,7 +50,7 @@ public class ChangingWeapon : MonoBehaviour
         //isFightMode = true;
         normalMode.SetActive(true);
         fightMode.SetActive(false);
-
+        actionsOfMainCharacter.TakeOutWeapon();
         currentNumberWeapon = 0;
         Destroy(curentWeapon);
     }
@@ -72,7 +79,7 @@ public class ChangingWeapon : MonoBehaviour
             curentWeapon = (GameObject)Instantiate(objectWeapons[currentNumberWeapon]);
             curentWeapon.transform.parent = leftHand;
             curentWeapon.transform.localPosition = Vector3.zero;
-            curentWeapon.transform.localRotation = Quaternion.Euler(-90, 180, -260);
+            curentWeapon.transform.localRotation = Quaternion.Euler(90, -90, 0);
 
         }
 

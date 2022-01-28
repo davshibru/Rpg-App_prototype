@@ -6,6 +6,7 @@ public class ActionsOfMainCharacter : MonoBehaviour
 {
 
     private Animator animator;
+    private bool fightModVar = false;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class ActionsOfMainCharacter : MonoBehaviour
 
     public void Walk()
     {
+        animator.SetBool("Walk", true);
         animator.SetFloat("Speed", 0.5f);
     }
 
@@ -34,6 +36,22 @@ public class ActionsOfMainCharacter : MonoBehaviour
         animator.SetTrigger("Jump");
     }
 
+    public void TakeOnWeapon()
+    {
+        animator.SetBool("FightMod", true);
+        fightModVar = true;
+    }
+
+    public void TakeOutWeapon()
+    {
+        animator.SetBool("FightMod", false);
+        fightModVar = true;
+    }
+
+    public bool getFightMod()
+    {
+        return fightModVar;
+    }
 
 
 }

@@ -21,6 +21,8 @@ public class MainPersonController : MonoBehaviour
     protected float CameraPosY;
     protected float CameraPosSpeed = 0.1f;
 
+    protected bool fightMod = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,15 @@ public class MainPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         var input = new Vector3(LeftJoystick.Direction.x, 0, LeftJoystick.Direction.y);
-        var vel = Quaternion.AngleAxis(CameraAngleY + 180, Vector3.up) * input * 5f;
+        var vel = Quaternion.AngleAxis(CameraAngleY + 180, Vector3.up) * input;
+
+        fightMod = actionsOfMainCharacter.getFightMod();
+
+        if (fightMod)
+            vel *= 2f;
+        else
+            vel *= 5f;
 
         Rigidbody.velocity = new Vector3(vel.x, Rigidbody.velocity.y, vel.z);
         
