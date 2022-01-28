@@ -57,12 +57,12 @@ public class MainPersonController : MonoBehaviour
         }
 
 
-        if (Rigidbody.velocity.magnitude > 1f)
+        if (Rigidbody.velocity.magnitude > 3f)
         {
             actionsOfMainCharacter.Run();
         }
 
-        else if (Rigidbody.velocity.magnitude > 0.5f)
+        else if (Rigidbody.velocity.magnitude > 0.3f)
         {
             actionsOfMainCharacter.Walk();
         }
