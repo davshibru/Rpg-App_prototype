@@ -19,7 +19,7 @@ public class MainPersonController : MonoBehaviour
     protected float CameraAngleSpeed = 0.2f;
 
     protected float CameraPosY;
-    protected float CameraPosSpeed = 0.15f;
+    protected float CameraPosSpeed = 0.005f;
 
     protected bool fightMod = false;
 
