@@ -66,7 +66,7 @@ public class SaveAndLoad : MonoBehaviour
         stringName.y = Player.transform.position.y;
         stringName.z = Player.transform.position.z;
 
-        if (File.Exists(Application.dataPath + "saves"))
+        if (!File.Exists(Application.dataPath + "/saves"))
         {
             Directory.CreateDirectory(Application.dataPath + "/saves");
             if (slotConfig.CurNumBut == 1)
