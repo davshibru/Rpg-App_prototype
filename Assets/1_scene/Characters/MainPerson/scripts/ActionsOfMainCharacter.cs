@@ -45,7 +45,7 @@ public class ActionsOfMainCharacter : MonoBehaviour
     public void TakeOutWeapon()
     {
         animator.SetBool("FightMod", false);
-        fightModVar = true;
+        fightModVar = false;
     }
 
     public bool getFightMod()

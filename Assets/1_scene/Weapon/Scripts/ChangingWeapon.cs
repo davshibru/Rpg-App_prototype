@@ -51,20 +51,21 @@ public class ChangingWeapon : MonoBehaviour
         normalMode.SetActive(true);
         fightMode.SetActive(false);
         actionsOfMainCharacter.TakeOutWeapon();
-        currentNumberWeapon = 0;
+        //currentNumberWeapon = 0;
         Destroy(curentWeapon);
     }
 
     public void ChangeWeaponButtonMethod()
     {
+        currentNumberWeapon += 1;
         changingWeaponMethod();
     }
 
     private void changingWeaponMethod()
     {
-        currentNumberWeapon += 1;
+        
 
-        if (currentNumberWeapon == 2)
+        if (currentNumberWeapon == objectWeapons.Length)
         {
             currentNumberWeapon = 0;
         }

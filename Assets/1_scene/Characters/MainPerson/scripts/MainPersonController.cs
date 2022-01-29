@@ -19,7 +19,7 @@ public class MainPersonController : MonoBehaviour
     protected float CameraAngleSpeed = 0.2f;
 
     protected float CameraPosY;
-    protected float CameraPosSpeed = 0.1f;
+    protected float CameraPosSpeed = 0.15f;
 
     protected bool fightMod = false;
 
@@ -53,8 +53,9 @@ public class MainPersonController : MonoBehaviour
 
 
         CameraAngleY += TouchField.TouchDist.x * CameraAngleSpeed;
+        CameraPosY = Mathf.Clamp(CameraPosY - TouchField.TouchDist.y * CameraPosSpeed, 0, 3f);
 
-        Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, 2, 2);
+        Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, CameraPosY, 2);
         Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + Vector3.up - (Camera.main.transform.position), Vector3.up);
 
 
