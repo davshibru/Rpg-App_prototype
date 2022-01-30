@@ -11,14 +11,14 @@ public class ChangingWeapon : MonoBehaviour
 
     //private bool isFightMode = false;
 
-    public FixedButton FightModeButton;
+    /*public FixedButton FightModeButton;
     public FixedButton NormalModeButton;
     public FixedButton ChangeWeaponButton;
-
+    */
     protected ActionsOfMainCharacter actionsOfMainCharacter;
 
     public GameObject curentWeapon;
-    public Transform leftHand;
+    public Transform rightHand;
 
     public int AttackPlayer;
     public int DefendPlayer;
@@ -74,13 +74,35 @@ public class ChangingWeapon : MonoBehaviour
         {
             if (curentWeapon != null)
             {
+                switch (curentWeapon.GetComponent<WeaponStats>().WeaponTag)
+                {
+                    case "sword":
+
+                        actionsOfMainCharacter.setOutSwordMode();
+
+                        break;
+                    case "axe":
+                        break;
+                }
+
+
                 Destroy(curentWeapon);
             }
 
             curentWeapon = (GameObject)Instantiate(objectWeapons[currentNumberWeapon]);
-            curentWeapon.transform.parent = leftHand;
+            curentWeapon.transform.parent = rightHand;
             curentWeapon.transform.localPosition = Vector3.zero;
             curentWeapon.transform.localRotation = Quaternion.Euler(90, -90, 0);
+
+            switch (curentWeapon.GetComponent<WeaponStats>().WeaponTag)
+            {
+                case "sword":
+                    actionsOfMainCharacter.setSwordMode();
+                    break;
+
+                case "axe":
+                    break;
+            }
 
         }
 

@@ -53,5 +53,19 @@ public class ActionsOfMainCharacter : MonoBehaviour
         return fightModVar;
     }
 
+    public void makeAttackTriger()
+    {
+        animator.SetTrigger("Attack");
+    }
+
+    public void setSwordMode()
+    {
+        animator.SetBool("Sword", true);
+    }
+
+    public void setOutSwordMode()
+    {
+        animator.SetBool("Sword", false);
+    }
 
 }

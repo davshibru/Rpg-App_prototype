@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attacks: 10
   Defends: 5
+  WeaponTag: sword
 --- !u!1001 &951572627006365307
 PrefabInstance:
   m_ObjectHideFlags: 0

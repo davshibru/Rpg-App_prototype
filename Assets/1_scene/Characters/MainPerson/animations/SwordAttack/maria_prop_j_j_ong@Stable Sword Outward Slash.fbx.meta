@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 67f860de818a1824fbd4f5f070c20924
+guid: 91468c63a9dbcd9408a2036394827029
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Great Sword Walk
+    second: Stable Sword Outward Slash
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Great Sword Walk
+      name: Stable Sword Outward Slash
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 81
+      lastFrame: 122
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

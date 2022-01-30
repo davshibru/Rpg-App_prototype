@@ -7,6 +7,7 @@ public class WeaponStats : MonoBehaviour
 
     public int Attacks;
     public int Defends;
+    public string WeaponTag;
 
     // Start is called before the first frame update
     void Start()
