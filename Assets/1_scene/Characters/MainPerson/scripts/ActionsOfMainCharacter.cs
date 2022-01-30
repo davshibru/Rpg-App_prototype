@@ -68,4 +68,14 @@ public class ActionsOfMainCharacter : MonoBehaviour
         animator.SetBool("Sword", false);
     }
 
+    public void turnOnMagic()
+    {
+        animator.SetBool("Magic", true);
+    }
+
+    public void turnOffMagic()
+    {
+        animator.SetBool("Magic", false);
+    }
+
 }

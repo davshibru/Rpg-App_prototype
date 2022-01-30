@@ -25,6 +25,7 @@ public class ChangingWeapon : MonoBehaviour
 
     public GameObject normalMode;
     public GameObject fightMode;
+    public GameObject magicMode;
 
     void Start()
     {
@@ -37,6 +38,15 @@ public class ChangingWeapon : MonoBehaviour
 
     }
 
+
+    public void MagicModeButtonMethod()
+    {
+        normalMode.SetActive(false);
+        magicMode.SetActive(true);
+        actionsOfMainCharacter.turnOnMagic();
+        //changingWeaponMethod();
+    }
+
     public void FightModeButtonMethod()
     {
         normalMode.SetActive(false);
@@ -47,11 +57,14 @@ public class ChangingWeapon : MonoBehaviour
 
     public void NormalModeButtonMethod()
     {
-        //isFightMode = true;
+        
         normalMode.SetActive(true);
         fightMode.SetActive(false);
+        magicMode.SetActive(false);
+
+        actionsOfMainCharacter.turnOffMagic();
         actionsOfMainCharacter.TakeOutWeapon();
-        //currentNumberWeapon = 0;
+        
         Destroy(curentWeapon);
     }
 

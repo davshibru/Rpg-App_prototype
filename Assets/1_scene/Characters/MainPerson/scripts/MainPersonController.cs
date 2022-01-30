@@ -14,6 +14,9 @@ public class MainPersonController : MonoBehaviour
 
     protected ActionsOfMainCharacter actionsOfMainCharacter;
     protected ChangingWeapon changingWeapon;
+    protected SkillsControlls skillsControlls;
+
+
     protected Rigidbody Rigidbody;
 
     protected float CameraAngleY;
@@ -24,13 +27,16 @@ public class MainPersonController : MonoBehaviour
 
     protected bool fightMod = false;
 
+    public GameObject Skill;
 
     // Start is called before the first frame update
     void Start()
     {
-        actionsOfMainCharacter = GetComponent<ActionsOfMainCharacter>();
         Rigidbody = GetComponent<Rigidbody>();
+        actionsOfMainCharacter = GetComponent<ActionsOfMainCharacter>();
+        
         changingWeapon = GetComponent<ChangingWeapon>();
+        skillsControlls = GetComponent<SkillsControlls>();
     }
 
     // Update is called once per frame
@@ -69,6 +75,13 @@ public class MainPersonController : MonoBehaviour
             case "axe":
                 break;
         }
+    }
+
+
+    public void magicAttacAction()
+    {
+        Instantiate(Skill, transform.position, transform.rotation);
+        Destroy(Skill, Skill.GetComponent<SkillsControlls>().timer);
     }
 
     protected void inputMoveAndCamera()
