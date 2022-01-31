@@ -26,6 +26,7 @@ public class MainPersonController : MonoBehaviour
     protected float CameraPosSpeed = 0.005f;
 
     protected bool fightMod = false;
+    protected bool magicMod = false;
 
     public GameObject Skill;
 
@@ -80,9 +81,20 @@ public class MainPersonController : MonoBehaviour
 
     public void magicAttacAction()
     {
-        Instantiate(Skill, transform.position, transform.rotation);
-        Destroy(Skill, Skill.GetComponent<SkillsControlls>().timer);
+        actionsOfMainCharacter.makeMagicAttackTriger();
+        Invoke("supMagicAttacAction", 0.8f);
+
     }
+
+    public void supMagicAttacAction()
+    {
+        GameObject skil = Instantiate(Skill, transform.position, transform.rotation);
+        Destroy(skil, Skill.GetComponent<SkillsControlls>().timer);
+
+    }
+
+
+
 
     protected void inputMoveAndCamera()
     {
@@ -90,8 +102,10 @@ public class MainPersonController : MonoBehaviour
         var vel = Quaternion.AngleAxis(CameraAngleY + 180, Vector3.up) * input;
 
         fightMod = actionsOfMainCharacter.getFightMod();
-
+        magicMod = actionsOfMainCharacter.getMagicMod();
         if (fightMod)
+            vel *= 2f;
+        else if (magicMod)
             vel *= 2f;
         else
             vel *= 5f;

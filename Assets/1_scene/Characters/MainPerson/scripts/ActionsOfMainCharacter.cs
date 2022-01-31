@@ -7,6 +7,7 @@ public class ActionsOfMainCharacter : MonoBehaviour
 
     private Animator animator;
     private bool fightModVar = false;
+    private bool magicModVar = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,14 +49,25 @@ public class ActionsOfMainCharacter : MonoBehaviour
         fightModVar = false;
     }
 
+
     public bool getFightMod()
     {
         return fightModVar;
     }
 
+    public bool getMagicMod()
+    {
+        return magicModVar;
+    }
+
     public void makeAttackTriger()
     {
         animator.SetTrigger("Attack");
+    }
+
+    public void makeMagicAttackTriger()
+    {
+        animator.SetTrigger("MagicAttack");
     }
 
     public void setSwordMode()
@@ -71,11 +83,13 @@ public class ActionsOfMainCharacter : MonoBehaviour
     public void turnOnMagic()
     {
         animator.SetBool("Magic", true);
+        magicModVar = true;
     }
 
     public void turnOffMagic()
     {
         animator.SetBool("Magic", false);
+        magicModVar = false;
     }
 
 }
