@@ -62,7 +62,7 @@ public class MainPersonController : MonoBehaviour
     public void jumpAction()
     {
         actionsOfMainCharacter.Jump();
-        transform.position = transform.position + new Vector3(0, jump * 0.02f, 0);
+        transform.position = transform.position + new Vector3(0, jump * 0.35f, 0);
     }
 
     public void attackAction()
