@@ -5,15 +5,15 @@ using UnityEngine.EventSystems;
 
 public class MagicInputField : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
+    [HideInInspector]
+    public Vector2 TouchDist;
+    [HideInInspector]
+    public Vector2 PointerOld;
+    [HideInInspector]
+    protected int PointerId;
+    [HideInInspector]
+    public bool Pressed;
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,32 @@ public class MagicInputField : MonoBehaviour, IPointerUpHandler, IPointerDownHan
     // Update is called once per frame
     void Update()
     {
+        if (Pressed)
+        {
+            if (PointerId >= 0 && PointerId < Input.touches.Length)
+            {
+                TouchDist = Input.touches[PointerId].position - PointerOld;
+                PointerOld = Input.touches[PointerId].position;
+            }
+            else
+            {
+                TouchDist = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - PointerOld;
+                PointerOld = Input.mousePosition;
+            }
+        }
         
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Pressed = true;
+        PointerId = eventData.pointerId;
+        PointerOld = eventData.position;
+    }
+
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Pressed = false;
     }
 }
