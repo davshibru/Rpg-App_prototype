@@ -10,6 +10,24 @@ using PDollarGestureRecognizer;
 
 public class fieldMagicInput : MonoBehaviour
 {
+    #region skills
+
+    public GameObject Skill;
+
+    #endregion
+
+
+
+
+    public GameObject normalMode;
+    public GameObject magicMode;
+
+
+    private bool isDraw = false;
+
+
+    private float magicCount = 2f;
+
 
     Collider m_Collider;
 
@@ -33,10 +51,9 @@ public class fieldMagicInput : MonoBehaviour
     private CanvasScaler canvasScaler;
 
     public Text message;
+    private string messageString;
 
-    private float screenSizeWidth;
-    private float screenSizeHeight;
-
+    
 
     private bool recognized;
 
@@ -83,6 +100,7 @@ public class fieldMagicInput : MonoBehaviour
             if (Input.touchCount > 0)
             {
                 virtualKeyPosition = new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);
+                isDraw = true;
             }
         }
         else
@@ -90,6 +108,7 @@ public class fieldMagicInput : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 virtualKeyPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
+                isDraw = true;
             }
         }
 
@@ -124,9 +143,69 @@ public class fieldMagicInput : MonoBehaviour
                 currentGestureLineRenderer.SetPosition(vertexCount - 1, Camera.main.ScreenToWorldPoint(new Vector3(virtualKeyPosition.x, virtualKeyPosition.y, 10)));
             }
 
+            else
+            {
+                if (isDraw && magicCount > 0)
+                {
+
+                    isDraw = false;
+                    recognaize();
+                    clearField();
+                    magicCount--;
+
+                    if (magicCount == 0)
+                    {
+                        isDraw = false;
+
+                        message.text = messageString;
+                        magicCount = 2;
+                        makeMagic();
+                        messageString = "";
+                        turnOnNormalMode();
+                        
+                    }
+
+                }
+
+                
+            }
+
+            
+        }
+
+        
+
+    }
+
+    private void makeMagic()
+    {
+        GameObject skil;
+        switch (messageString)
+        {
+
+            
+
+            case "from above from above ":
+                skil = Instantiate(Skill, new Vector3(1, 2, 1), new Quaternion(0, 0, 0, 0));
+
+                if (skil != null)
+                    Destroy(skil, Skill.GetComponent<SkillsControlls>().timer);
+                break;
+            case "From Botton From Botton ":
+                skil = Instantiate(Skill, new Vector3(1, 5, 1), new Quaternion(0, 0, 180, 0));
+                
+                if (skil != null)
+                    Destroy(skil, Skill.GetComponent<SkillsControlls>().timer);
+                break;
 
         }
 
+        if (messageString.Equals("from above from above "))
+        {
+            
+        }
+
+        
     }
 
     public void clearField()
@@ -158,7 +237,8 @@ public class fieldMagicInput : MonoBehaviour
         Gesture candidate = new Gesture(points.ToArray());
         Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
 
-        message.text = gestureResult.GestureClass + " " + gestureResult.Score;
+        messageString += gestureResult.GestureClass + " ";
+        //message.text = gestureResult.GestureClass + " " + gestureResult.Score;
     }
 
     bool IsPointInRT(Vector2 point, RectTransform rt)
@@ -229,5 +309,21 @@ public class fieldMagicInput : MonoBehaviour
         }
         return false;
     }
+
+
+
+    public void turnOnMagicMode()
+    {
+        normalMode.SetActive(false);
+        magicMode.SetActive(true);
+    }
+
+    public void turnOnNormalMode()
+    {
+        normalMode.SetActive(true);
+        magicMode.SetActive(false);
+        clearField();
+    }
+
 
 }
