@@ -19,8 +19,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetLookAtWeight(1, 0, headRotWeight, 0, 1);
-        animator.SetLookAtPosition(targetBot.position);
+        
 
 
     }

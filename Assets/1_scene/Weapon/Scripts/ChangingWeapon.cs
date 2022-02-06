@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class ChangingWeapon : MonoBehaviour
 {
 
+    
+    
+
     public int currentNumberWeapon;
     public GameObject[] objectWeapons;
 
@@ -23,30 +26,57 @@ public class ChangingWeapon : MonoBehaviour
     public int AttackPlayer;
     public int DefendPlayer;
 
+
     public GameObject normalMode;
     public GameObject fightMode;
     public GameObject magicMode;
     public GameObject magicField;
 
+    public GameObject ScrollInstance;
+
+    public GameObject turnOnMagicFieldButton;
+
     void Start()
     {
         actionsOfMainCharacter = GetComponent<ActionsOfMainCharacter>();
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        
     }
 
 
     public void MagicModeButtonMethod()
     {
         normalMode.SetActive(false);
-        //magicMode.SetActive(true);
-        magicField.SetActive(true);
+        magicMode.SetActive(true);
+        SetActiveIfEmptyMagicSlot();
+        //magicField.SetActive(true);
         actionsOfMainCharacter.turnOnMagic();
         
+    }
+
+    public void SetActiveIfEmptyMagicSlot()
+    {
+        if (ScrollInstance.GetComponent<Transform>().childCount == 0)
+        {
+            SetActiveMagicField();
+        }
+    }
+
+    public void SetActiveMagicField()
+    {
+        magicField.SetActive(true);
+        turnOnMagicFieldButton.SetActive(false);
+    }
+
+    public void TornOffMagicField()
+    {
+        magicField.SetActive(false);
+        turnOnMagicFieldButton.SetActive(true);
     }
 
     public void FightModeButtonMethod()
@@ -61,8 +91,11 @@ public class ChangingWeapon : MonoBehaviour
     {
         
         normalMode.SetActive(true);
+
         fightMode.SetActive(false);
-        magicField.SetActive(false);
+        magicMode.SetActive(false);
+
+        TornOffMagicField();
 
         actionsOfMainCharacter.turnOffMagic();
         actionsOfMainCharacter.TakeOutWeapon();

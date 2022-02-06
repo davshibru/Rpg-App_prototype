@@ -15,9 +15,11 @@ public class MainPersonController : MonoBehaviour
     protected ActionsOfMainCharacter actionsOfMainCharacter;
     protected ChangingWeapon changingWeapon;
     protected SkillsControlls skillsControlls;
+    public InputMagicField inputMagicField;
 
 
     protected Rigidbody Rigidbody;
+    public GameObject MagicTarget;
 
     protected float CameraAngleY;
     protected float CameraAngleSpeed = 0.2f;
@@ -38,6 +40,8 @@ public class MainPersonController : MonoBehaviour
         
         changingWeapon = GetComponent<ChangingWeapon>();
         skillsControlls = GetComponent<SkillsControlls>();
+
+        inputMagicField = GetComponent<InputMagicField>();
     }
 
     // Update is called once per frame
@@ -56,7 +60,7 @@ public class MainPersonController : MonoBehaviour
 
         callAnimationStayWalkAndRun();
 
-
+        
     }
 
     public void jumpAction()
@@ -79,11 +83,24 @@ public class MainPersonController : MonoBehaviour
     }
 
 
-    public void magicAttacAction()
+    public void magicAttacAction(Button but)
     {
         actionsOfMainCharacter.makeMagicAttackTriger();
         Invoke("supMagicAttacAction", 0.8f);
 
+        destroyButtonMagicSlot(but);
+
+    }
+
+    public void magicAttacAction()
+    {
+        actionsOfMainCharacter.makeMagicAttackTriger();
+        Invoke("supMagicAttacAction", 0.8f);
+    }
+
+    public void destroyButtonMagicSlot(Button but)
+    {
+        Destroy(but.gameObject);
     }
 
     public void supMagicAttacAction()
@@ -103,6 +120,7 @@ public class MainPersonController : MonoBehaviour
 
         fightMod = actionsOfMainCharacter.getFightMod();
         magicMod = actionsOfMainCharacter.getMagicMod();
+
         if (fightMod)
             vel *= 2f;
         else if (magicMod)
@@ -118,12 +136,39 @@ public class MainPersonController : MonoBehaviour
 
         }
 
+        
 
         CameraAngleY += TouchField.TouchDist.x * CameraAngleSpeed;
         CameraPosY = Mathf.Clamp(CameraPosY - TouchField.TouchDist.y * CameraPosSpeed, 0, 3f);
 
-        Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, CameraPosY, 2);
-        Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + Vector3.up - (Camera.main.transform.position), Vector3.up);
+
+
+        if (magicMod)
+        {
+            Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, CameraPosY, 1.5f);
+            //Debug.Log(Camera.main.transform.rotation.y);
+
+            if (Camera.main.transform.rotation.y > -0.5f && Camera.main.transform.rotation.y < 0.4f)
+            {
+                Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(1, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
+            }
+            else if (Camera.main.transform.rotation.y > -0.6f && Camera.main.transform.rotation.y < 0.6f)
+            {
+                Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(-0.25f, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
+            }
+            else
+            {
+                Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(-1, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
+            }
+
+
+        }
+        else
+        {
+            Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, CameraPosY, 2);
+            Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + Vector3.up - (Camera.main.transform.position), Vector3.up);
+
+        }
 
     }
 
