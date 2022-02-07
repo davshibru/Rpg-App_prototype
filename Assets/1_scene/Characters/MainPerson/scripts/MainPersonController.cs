@@ -16,7 +16,7 @@ public class MainPersonController : MonoBehaviour
     protected ChangingWeapon changingWeapon;
     protected SkillsControlls skillsControlls;
     public InputMagicField inputMagicField;
-
+    private CastSystem castSystem;
 
     protected Rigidbody Rigidbody;
     public GameObject MagicTarget;
@@ -42,6 +42,8 @@ public class MainPersonController : MonoBehaviour
         skillsControlls = GetComponent<SkillsControlls>();
 
         inputMagicField = GetComponent<InputMagicField>();
+
+        castSystem = GetComponent<CastSystem>();
     }
 
     // Update is called once per frame
@@ -60,7 +62,7 @@ public class MainPersonController : MonoBehaviour
 
         callAnimationStayWalkAndRun();
 
-        
+         
     }
 
     public void jumpAction()
@@ -105,9 +107,9 @@ public class MainPersonController : MonoBehaviour
 
     public void supMagicAttacAction()
     {
-        GameObject skil = Instantiate(Skill, transform.position, transform.rotation);
-        Destroy(skil, Skill.GetComponent<SkillsControlls>().timer);
-
+        //GameObject skil = Instantiate(Skill, transform.position, transform.rotation);
+        //Destroy(skil, Skill.GetComponent<SkillsControlls>().timer);
+        castSystem.makeMagic(transform);
     }
 
 
