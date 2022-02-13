@@ -27,10 +27,25 @@ public class MainPersonController : MonoBehaviour
     protected float CameraPosY;
     protected float CameraPosSpeed = 0.005f;
 
+
+    // protected varibles
+
     protected bool fightMod = false;
     protected bool magicMod = false;
+    protected bool topDownView = false;
 
     public GameObject Skill;
+
+
+
+    #region magic attack buttons
+
+    [Header("magic atack button")]
+
+    public FixedButton metteorButton;
+
+    #endregion
+
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +77,8 @@ public class MainPersonController : MonoBehaviour
 
         callAnimationStayWalkAndRun();
 
-         
+        topDownView = castSystem.getTopDownView();
+        
     }
 
     public void jumpAction()
@@ -94,23 +110,15 @@ public class MainPersonController : MonoBehaviour
 
     }
 
-    public void magicAttacAction()
-    {
-        actionsOfMainCharacter.makeMagicAttackTriger();
-        Invoke("supMagicAttacAction", 0.8f);
-    }
+
+    
 
     public void destroyButtonMagicSlot(Button but)
     {
         Destroy(but.gameObject);
     }
 
-    public void supMagicAttacAction()
-    {
-        //GameObject skil = Instantiate(Skill, transform.position, transform.rotation);
-        //Destroy(skil, Skill.GetComponent<SkillsControlls>().timer);
-        castSystem.makeMagic(transform);
-    }
+    
 
 
 
@@ -138,31 +146,51 @@ public class MainPersonController : MonoBehaviour
 
         }
 
-        
-
         CameraAngleY += TouchField.TouchDist.x * CameraAngleSpeed;
         CameraPosY = Mathf.Clamp(CameraPosY - TouchField.TouchDist.y * CameraPosSpeed, 0, 3f);
+
+        if (topDownView)
+        {
+            transform.rotation = Quaternion.AngleAxis(CameraAngleY + 180 + Vector3.SignedAngle(Vector3.forward, input.normalized + Vector3.forward * 0.001f, Vector3.up), Vector3.up);
+            CameraAngleY += TouchField.TouchDist.x * CameraAngleSpeed;
+            //CameraPosY = Mathf.Clamp(CameraPosY - TouchField.TouchDist.y * CameraPosSpeed, 3f, 4f);
+
+        }
+
+
+
+
 
 
 
         if (magicMod)
         {
-            Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, CameraPosY, 1.5f);
-            //Debug.Log(Camera.main.transform.rotation.y);
 
-            if (Camera.main.transform.rotation.y > -0.5f && Camera.main.transform.rotation.y < 0.4f)
+            if (topDownView)
             {
-                Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(1, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
+                Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, 10, 13);
+
+                Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + Vector3.up - (Camera.main.transform.position), Vector3.up);
             }
-            else if (Camera.main.transform.rotation.y > -0.6f && Camera.main.transform.rotation.y < 0.6f)
-            {
-                Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(-0.25f, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
-            }
+
             else
             {
-                Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(-1, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
-            }
+                Camera.main.transform.position = transform.position + Quaternion.AngleAxis(CameraAngleY, Vector3.up) * new Vector3(0, CameraPosY, 1.5f);
+                //Debug.Log(Camera.main.transform.rotation.y);
 
+                if (Camera.main.transform.rotation.y > -0.5f && Camera.main.transform.rotation.y < 0.4f)
+                {
+                    Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(1, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
+                }
+                else if (Camera.main.transform.rotation.y > -0.6f && Camera.main.transform.rotation.y < 0.6f)
+                {
+                    Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(-0.25f, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
+                }
+                else
+                {
+                    Camera.main.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(-1, 0) + Vector3.up - (Camera.main.transform.position), Vector3.up);
+                }
+            }
 
         }
         else

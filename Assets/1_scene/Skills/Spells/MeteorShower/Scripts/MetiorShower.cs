@@ -19,16 +19,15 @@ public class MetiorShower : Spell
     public GameObject epicenterPrefab;
 
     private Vector3 p_pointCast;
-    private Quaternion p_rotete;
 
     [SerializeField]
     private AttributeSpell _attribute;
     public override AttributeSpell A_Attribute { get { return _attribute; } set { _attribute = value; } }
 
-    public override void A_ActivateSpell(Transform tr)
+    public override void A_ActivateSpell(Vector3 vector)
     {
-        p_pointCast = new Vector3(tr.position.x, tr.position.y + 0.5f, tr.position.z);
-        p_rotete = tr.rotation;
+        p_pointCast = new Vector3(vector.x, vector.y + 0.5f, vector.z);
+        
         Status = true;
     }
 
@@ -37,8 +36,8 @@ public class MetiorShower : Spell
     {
         if (Status)
         {
-            var temp = Instantiate(epicenterPrefab, p_pointCast, p_rotete).GetComponent<Ephicentr>();
-            temp.Init(Damage, Duration, Radius, Interval, countPerWave, p_pointCast, p_rotete);
+            var temp = Instantiate(epicenterPrefab, p_pointCast, Quaternion.identity).GetComponent<Ephicentr>();
+            temp.Init(Damage, Duration, Radius, Interval, countPerWave, p_pointCast);
             Status = false;
         }
         

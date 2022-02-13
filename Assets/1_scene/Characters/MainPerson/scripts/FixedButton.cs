@@ -10,6 +10,9 @@ public class FixedButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     [HideInInspector]
     public bool Pressed;
 
+    public int id;
+    public string Name;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +33,18 @@ public class FixedButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         Pressed = false;
+    }
+
+    public bool getPressed()
+    {
+        if (Pressed)
+        {
+            Pressed = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

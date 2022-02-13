@@ -13,9 +13,8 @@ public class Ephicentr : MonoBehaviour
     private int p_countPerWave;
 
     private Vector3 p_spawnPoint;
-    private Quaternion p_rotate;
 
-    public void Init(float _damage, float _duartion, float _radius, float interval, int _countPerWave, Vector3 _spawnPoint, Quaternion _rotate)
+    public void Init(float _damage, float _duartion, float _radius, float interval, int _countPerWave, Vector3 _spawnPoint)
     {
         p_damage = _damage;
         p_duaration = _duartion;
@@ -23,7 +22,6 @@ public class Ephicentr : MonoBehaviour
         p_interval = p_interval;
         p_spawnPoint = _spawnPoint;
         p_countPerWave = _countPerWave;
-        p_rotate = _rotate;
 
         Status = true;
     }

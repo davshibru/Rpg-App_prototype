@@ -31,6 +31,7 @@ public class ChangingWeapon : MonoBehaviour
     public GameObject fightMode;
     public GameObject magicMode;
     public GameObject magicField;
+    public GameObject clickField;
 
     public GameObject ScrollInstance;
 
@@ -48,6 +49,8 @@ public class ChangingWeapon : MonoBehaviour
         
     }
 
+
+    #region magic
 
     public void MagicModeButtonMethod()
     {
@@ -78,6 +81,21 @@ public class ChangingWeapon : MonoBehaviour
         magicField.SetActive(false);
         turnOnMagicFieldButton.SetActive(true);
     }
+
+    public void ClickerCameraModeTurnOn()
+    {
+        magicMode.SetActive(false);
+        clickField.SetActive(true);
+    }
+
+    public void ClickerCameraModeTurnOff()
+    {
+        clickField.SetActive(false);
+        GetComponent<CastSystem>().setTopDownView(false);
+        NormalModeButtonMethod();
+    }
+
+    #endregion
 
     public void FightModeButtonMethod()
     {
