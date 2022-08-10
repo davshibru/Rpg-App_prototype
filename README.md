@@ -1,7 +1,7 @@
 # RPG APP
 
 <img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_1.jpg" width=270/>
-![Alt text](https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_1.jpg)
+
 ## Description
 
 3D RPG game for the Android operating system.
@@ -15,3 +15,25 @@
 - Change clothes System
 - Character selection
 - Open world
+
+
+
+## Tech
+
+Dillinger uses a number of open source projects to work properly:
+
+- [Unity] - a cross-platform game engine designed to create 3D and 2D applications and games
+- [Adobe PhotoShop] - graphics editor designed to create, edit and format bitmap images.
+- [Adobe Fuse] - 3D computer graphics software developed by Mixamo allows users to create 3D characters.
+- [Blender] - perfect program for creating 3D objects
+- [mixamo] - service that allows using machine learning methods to create a “skeleton” for a 3D character model, as well as download free animation sets for this skeleton
+ 
+
+## World
+
+Map was ginerated in "Medieval Fantasy City Generator" service
+
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_2_map.jpg" width=270/>
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_2_map_2.jpg" width=270/>
+
+
