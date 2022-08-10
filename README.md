@@ -34,11 +34,13 @@ Uses a number of open source projects to work properly:
 Map was ginerated in "Medieval Fantasy City Generator" service. Then in scene was created by map.
 
 <img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_2_map.jpg" width=270/>
+
 ```sh
 map generated in "Medieval Fantasy City Generator" 
 ```
 <img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_2_map_2_better.png" width=270/>
-```sh
+
+```sh 
 game map created by map 
 ```
 
