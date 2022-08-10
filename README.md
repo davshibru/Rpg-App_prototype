@@ -33,13 +33,11 @@ Uses a number of open source projects to work properly:
 
 Map was ginerated in "Medieval Fantasy City Generator" service. Then in scene was created by map.
 
-<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_2_map.jpg" width=500/>
-
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_2_map.jpg" width=270/>
 ```sh
 map generated in "Medieval Fantasy City Generator" 
 ```
-<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_2_map_2_better.png" width=600/>
-
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_2_map_2_better.png" width=270/>
 ```sh
 game map created by map 
 ```
@@ -49,13 +47,14 @@ game map created by map
 The combat system consists of two parts: melee and magic combat.
 
 
-<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_1.jpg" width=500/>
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_1.jpg" width=270/>
 In order to start attacking with a sword, for example, you first need to equip the sword through inventory.
 
-<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_3_magic.jpg" width=700/>
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_3_magic.jpg" width=270/>
 
-In order to start attacking with magic, you must first add the desired spell to the spell slot.
+In order to start attacking with magic, you must first add the desired spell to the spell slot. This can be done using a special panel on the need to draw a rune spell
 
-<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_3_magic_2.jpg" width=400/>
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_3_magic_2.jpg" width=270/>
 
 Different spells can affect the camera
+
