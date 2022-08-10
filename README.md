@@ -52,10 +52,10 @@ The combat system consists of two parts: melee and magic combat.
 <img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_1.jpg" width=500/>
 In order to start attacking with a sword, for example, you first need to equip the sword through inventory.
 
-<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_3_magic.jpg" width=400/>
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_3_magic.jpg" width=700/>
 
 In order to start attacking with magic, you must first add the desired spell to the spell slot.
 
-<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_3_magic_2.jpg" width=700/>
+<img src="https://github.com/davshibru/images-in-readme/blob/main/rpg-app/rpg-app_3_magic_2.jpg" width=400/>
 
 Different spells can affect the camera
